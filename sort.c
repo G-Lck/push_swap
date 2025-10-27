@@ -14,16 +14,21 @@ static int	is_sorted(int* arr, size_t len)
 	return (1);
 }
 
-int	*sort(int* arr, size_t len)
+void sort(int* arr, size_t len)
 {
 	size_t i;
 	int temp;
 
 	i = 0;
 	temp = 0;
+	if (len <= 1)
+		return;
 
-	if (len == 1)
-		return (arr);
+	while (i < len)
+	{
+		ft_printf("temp_arr[%d] = %d\n", (int)i, arr[i]);
+		i++;
+	}
 
 	while (!is_sorted(arr, len))
 	{
@@ -39,5 +44,5 @@ int	*sort(int* arr, size_t len)
 			i++;
 		}
 	}
-	return (arr);
+	return ;
 }

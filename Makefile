@@ -1,5 +1,6 @@
 NAME = push_swap.out
 SRCS = check_unicity.c \
+	convert_numbers_to_position.c \
 	ft_atoi.c \
 	ft_itoa.c \
 	parsing.c \

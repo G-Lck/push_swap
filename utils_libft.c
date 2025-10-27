@@ -55,3 +55,41 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char	*temp_dest;
+	unsigned char	*temp_src;
+	size_t			i;
+
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	temp_dest = (unsigned char *)dest;
+	temp_src = (unsigned char *)src;
+	while (i < n)
+	{
+		temp_dest[i] = temp_src[i];
+		i++;
+	}
+	return (dest);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t len)
+{
+	unsigned char	*temp_src;
+	unsigned char	*temp_dest;
+
+	if (!dest && !src)
+		return (NULL);
+	temp_src = (unsigned char *)src;
+	temp_dest = (unsigned char *)dest;
+	if (dest > src)
+	{
+		while (len--)
+			temp_dest[len] = temp_src[len];
+	}
+	else
+		ft_memcpy(dest, src, len);
+	return (dest);
+}

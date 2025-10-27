@@ -21,20 +21,25 @@
 
 typedef struct s_list
 {
-	int			content;
+	void			*content;
 	struct s_list	*next;
 }	t_list;
 
-int	*sort(int* arr, size_t len);
+int *convert_numbers_to_position(int* numbers, int* position, size_t len);
+void	sort(int* arr, size_t len);
 int	check_unicity(int *arr, size_t len);
 int	count_words(const char *s, char c);
 int * copynumbers(char *str, char c, size_t len_array);
 void	push_swap(char* str);
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t len);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(void *content);
+void	swap(t_list **lst);
 void	print_list_int(t_list *lst);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dest, const char *src, size_t dsize);
