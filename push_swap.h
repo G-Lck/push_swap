@@ -16,18 +16,28 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stddef.h>
 # include "libftprintf/libftprintf.h"
 
 typedef struct s_list
 {
-	void			*content;
+	int			content;
 	struct s_list	*next;
 }	t_list;
 
-t_list	*parsing_str_to_list(char *str);
+int	count_words(const char *s, char c);
+void	 copynumbers(int *arr, char *str, char c);
 void	push_swap(char* str);
+int		ft_atoi(const char *nptr);
+char	*ft_itoa(int n);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(int content);
+void	print_list_int(t_list *lst);
+size_t	ft_strlen(const char *s);
+size_t	ft_strlcpy(char *dest, const char *src, size_t dsize);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup(const char *s);
+char	**ft_split(const char *str, char c);
 
 #endif

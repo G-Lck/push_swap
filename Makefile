@@ -1,6 +1,9 @@
 NAME = push_swap.out
-SRCS = parsing_str_to_list.c \
+SRCS = ft_atoi.c \
+	ft_itoa.c \
+	parsing.c \
 	push_swap.c \
+	utils_libft.c \
 	utils_list.c \
 	libftprintf/libftprintf.a
 

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*node;
 
@@ -37,4 +37,26 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	last = ft_lstlast(*lst);
 	last->next = new;
+}
+
+/* print the list assuming each node->content is an int* */
+void	print_list_int(t_list *lst)
+{
+	t_list *cur = lst;
+	int i = 0;
+
+	if (!lst)
+	{
+		ft_printf("(empty)\n");
+		return;
+	}
+	while (cur)
+	{
+		if (cur->content)
+			ft_printf("[%d] %d\n", i, cur->content);
+		else
+			ft_printf("[%d] (null)\n", i);
+		cur = cur->next;
+		i++;
+	}
 }

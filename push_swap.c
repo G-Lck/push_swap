@@ -2,26 +2,48 @@
 
 void	push_swap(char* str)
 {
-	t_list *stack_a;
+	int *stack_a;
+	int i;
 
-	stack_a = NULL;
-	//t_list **stack_b;
-	if (!str)
+	i = 0;
+
+	if(!str)
 	{
-		ft_printf("The input is wrong");
+		ft_printf("Error\n");
+		return ;
+	}
+	stack_a = malloc(sizeof(int) * count_words(str, ' '));
+	//t_list **stack_b;
+	if (!stack_a)
+	{
+		ft_printf("Error\n");
 		return ;
 	}
 
-	stack_a = parsing_str_to_list(str);
-	if(!stack_a)
+	copynumbers(stack_a, str, ' ');
+	if (!stack_a)
+	{
+		ft_printf("Error\n");
 		return ;
-	//ft_printf("%s\n", (*stack_a)->content);
+	}
+
+	while (i < count_words(str, ' '))
+	{
+		ft_printf("stack_a[%d] = %d\n", i, stack_a[i]);
+		i++;
+	}
+	//print_list_int(stack_a);
 	ft_printf("OK\n");
+	free (stack_a);
+
 
 }
 
 
 int main()
 {
-	push_swap("hey hey");
+	//push_swap("12 -3 5");
+	push_swap("27942877249283");
+	//push_swap("12 3 2");
+	//push_swap("  1");
 }
