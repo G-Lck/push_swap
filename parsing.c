@@ -33,13 +33,17 @@ int	count_words(const char *s, char c)
 	return (count);
 }
 
-void	 copynumbers(int *arr, char *str, char c)
+int *copynumbers(char *str, char c, size_t len_array)
 {
+	int *arr;
 	int	len;
 	int	i;
 	char	*word;
 	int		j;
 
+	arr = malloc (sizeof(int) * len_array);
+	if (!arr)
+		return (NULL);
 	len = 0;
 	i = 0;
 	j = 0;
@@ -51,17 +55,16 @@ void	 copynumbers(int *arr, char *str, char c)
 			word = malloc (ft_strlen_s(str + i, c) + 1);
 			if (!word)
 			{
-				return ;
+				free(arr);
+				return (NULL);
 			}
 			len = ft_strlen_s(str + i, c);
 			ft_strlcpy(word, str + i, len + 1);
-			ft_printf("%s\n", word);
-			ft_printf("%i\n", ft_atoi(word));
 			if (ft_strncmp(word, ft_itoa(ft_atoi(word)), len))
 			{
 				free(word);
-				arr = NULL;
-				return ;
+				free(arr);
+				return NULL;
 			}
 			arr[j] = ft_atoi(word);
 			free (word);
@@ -69,7 +72,7 @@ void	 copynumbers(int *arr, char *str, char c)
 		}
 		i++;
 	}
-	return ;
+	return (arr);
 }
 
 

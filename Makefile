@@ -1,8 +1,10 @@
 NAME = push_swap.out
-SRCS = ft_atoi.c \
+SRCS = check_unicity.c \
+	ft_atoi.c \
 	ft_itoa.c \
 	parsing.c \
 	push_swap.c \
+	sort.c \
 	utils_libft.c \
 	utils_list.c \
 	libftprintf/libftprintf.a

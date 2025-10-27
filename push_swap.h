@@ -25,8 +25,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int	*sort(int* arr, size_t len);
+int	check_unicity(int *arr, size_t len);
 int	count_words(const char *s, char c);
-void	 copynumbers(int *arr, char *str, char c);
+int * copynumbers(char *str, char c, size_t len_array);
 void	push_swap(char* str);
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
