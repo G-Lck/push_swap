@@ -48,6 +48,19 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	*lst = new;
 }
 
+int	ft_lstsize(t_list *lst)
+{
+	int	n;
+
+	n = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		n++;
+	}
+	return (n);
+}
+
 /* print the list assuming each node->content is an int* */
 void	print_list_int(t_list *lst)
 {
@@ -62,10 +75,29 @@ void	print_list_int(t_list *lst)
 	while (cur)
 	{
 		if (cur->content)
-			ft_printf("[%d] %d\n", i, cur->content);
+			ft_printf("[%d] %d\n", i, *(int *)cur->content);
 		else
 			ft_printf("[%d] (null)\n", i);
 		cur = cur->next;
 		i++;
+	}
+}
+
+/* print values from head to tail, advancing the head pointer as we go
+   assumes node->content is int*; this will modify *stack (set to NULL at end) */
+void	print_and_advance(t_list **stack)
+{
+	if (!stack || !*stack)
+	{
+		ft_printf("(empty)\n");
+		return;
+	}
+	while (*stack)
+	{
+		if ((*stack)->content)
+			ft_printf("%d\n", *(int *)((*stack)->content));
+		else
+			ft_printf("(null)\n");
+		*stack = (*stack)->next;
 	}
 }

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void rotate(t_list **lst)
+void rotate(t_list **lst, char c)
 {
 	t_list *first;
 	t_list *last;
@@ -15,4 +15,5 @@ void rotate(t_list **lst)
 	last = ft_lstlast(*lst);
 	if (last)
 		last->next = first;
+	ft_printf("r%c\n", c);
 }

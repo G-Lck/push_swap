@@ -3,9 +3,16 @@ SRCS = check_unicity.c \
 	convert_numbers_to_position.c \
 	ft_atoi.c \
 	ft_itoa.c \
+	lst_is_sorted.c \
+	instructions.c \
 	parsing.c \
 	push_swap.c \
+	push.c \
+	swap.c \
+	rotate.c \
+	try_to_swap.c \
 	sort.c \
+	convert_arr_to_list.c \
 	utils_libft.c \
 	utils_list.c \
 	libftprintf/libftprintf.a

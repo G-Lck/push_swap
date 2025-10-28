@@ -24,12 +24,6 @@ void sort(int* arr, size_t len)
 	if (len <= 1)
 		return;
 
-	while (i < len)
-	{
-		ft_printf("temp_arr[%d] = %d\n", (int)i, arr[i]);
-		i++;
-	}
-
 	while (!is_sorted(arr, len))
 	{
 		i = 0;

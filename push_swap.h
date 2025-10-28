@@ -25,6 +25,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	instruction(t_list **stack_a, t_list **stack_b, size_t len);
+int	lst_is_sorted(t_list *lst, char c);
 int *convert_numbers_to_position(int* numbers, int* position, size_t len);
 void	sort(int* arr, size_t len);
 int	check_unicity(int *arr, size_t len);
@@ -39,12 +41,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
-void	swap(t_list **lst);
+int	ft_lstsize(t_list *lst);
 void	print_list_int(t_list *lst);
+void	print_and_advance(t_list **stack);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dest, const char *src, size_t dsize);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s);
-char	**ft_split(const char *str, char c);
+void	push(t_list **lst1, t_list **lst2, char c);
+void	rotate(t_list **lst, char c);
+void	swap(t_list **lst, char c);
+void try_to_swap(t_list **lst, char c);
+void convert_arr_to_list(int* arr, t_list** stack_a, size_t len);
 
 #endif

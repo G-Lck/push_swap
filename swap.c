@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap(t_list **lst)
+void	swap(t_list **lst, char c)
 {
 	void *tmp;
 
@@ -9,6 +9,8 @@ void	swap(t_list **lst)
 	tmp = (*lst)->content;
 	(*lst)->content = (*lst)->next->content;
 	(*lst)->next->content = tmp;
+
+	ft_printf("s%c\n", c);
 }
 
 

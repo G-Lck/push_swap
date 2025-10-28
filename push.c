@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	push(t_list **lst1, t_list **lst2)
+void	push(t_list **lst1, t_list **lst2, char c)
 {
 	t_list *first;
 
@@ -13,5 +13,7 @@ void	push(t_list **lst1, t_list **lst2)
 	*lst1 = first->next;
 
 	ft_lstadd_front(lst2, first);
+
+	ft_printf("p%c\n", c);
 }
 
