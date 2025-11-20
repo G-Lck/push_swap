@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   get_position.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,17 @@
 
 #include "push_swap.h"
 
-void	swap(t_list **lst, char c)
+int	get_position(t_list *stack, int nb)
 {
-	void	*tmp;
+	int	pos;
 
-	if (!lst || !*lst || !(*lst)->next)
-		return ;
-	tmp = (*lst)->content;
-	(*lst)->content = (*lst)->next->content;
-	(*lst)->next->content = tmp;
-	ft_printf("s%c\n", c);
+	pos = 0;
+	while (stack)
+	{
+		if (*(int *)stack->content == nb)
+			return (pos);
+		stack = stack->next;
+		pos++;
+	}
+	return (-1);
 }

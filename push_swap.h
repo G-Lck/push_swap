@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -19,41 +19,34 @@
 # include <stddef.h>
 # include <limits.h>
 # include "libftprintf/libftprintf.h"
+# include "libft/libft.h"
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
-int get_buddy(int me, t_list *lst);
+int		get_buddy(int me, t_list *lst);
 void	instruction(t_list **stack_a, t_list **stack_b, size_t len);
-int	lst_is_sorted(t_list *lst, char c);
-int *convert_numbers_to_position(int* numbers, int* position, size_t len);
-void	sort(int* arr, size_t len);
-int	check_unicity(int *arr, size_t len);
-int	count_words(const char *s, char c);
-int * copynumbers(char *str, char c, size_t len_array);
-void	push_swap(char* str);
-int		ft_atoi(const char *nptr);
-char	*ft_itoa(int n);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	*ft_memmove(void *dest, const void *src, size_t len);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(void *content);
-int	ft_lstsize(t_list *lst);
-void	print_list_int(t_list *lst);
-void	print_and_advance(t_list **stack);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dest, const char *src, size_t dsize);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s);
+int		lst_is_sorted(t_list *lst, char c);
+int		check_unicity(int *arr, size_t len);
+int		count_words(const char *s, char c);
+int		*copynumbers(char *str, char c, size_t len_array);
+void	push_swap(char *str);
 void	push(t_list **lst1, t_list **lst2, char c);
 void	rotate(t_list **lst, char c);
 void	swap(t_list **lst, char c);
-void try_to_swap(t_list **lst, char c);
-void convert_arr_to_list(int* arr, t_list** stack_a, size_t len);
+void	convert_arr_to_list(int *arr, t_list **stack_a, size_t len);
+int		get_position(t_list *stack, int nb);
+int		min_moves(int nb, t_list *stack_a, t_list *stack_b);
+void	put_to_top(int nb, t_list **stack_a, t_list **stack_b);
+void	reverse_rotate(t_list **lst, char c);
+int		less_cost_in_stack_a(t_list *stack_a, t_list *stack_b);
+int		find_min_value(t_list *stack);
+int		calculate_average(t_list *stack);
+void	sort_small_lists(t_list **stack_a, t_list **stack_b, size_t len);
+void	push_to_b(t_list **stack_a, t_list **stack_b, size_t *len_a, size_t *len_b);
+void	finalize_sorting(t_list **stack_a);
+void	sort3(t_list **stack_a);
+void	sort4(t_list **stack_a, t_list **stack_b);
+void	sort5(t_list **stack_a, t_list **stack_b);
+int		get_min_value(t_list *stack);
+int		get_max_value(t_list *stack);
+void	put_value_to_top(t_list **stack_a, int value);
 
 #endif

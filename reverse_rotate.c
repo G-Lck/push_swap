@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,19 @@
 
 #include "push_swap.h"
 
-void	swap(t_list **lst, char c)
+void	reverse_rotate(t_list **lst, char c)
 {
-	void	*tmp;
+	t_list	*last;
+	t_list	*second_last;
 
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
-	tmp = (*lst)->content;
-	(*lst)->content = (*lst)->next->content;
-	(*lst)->next->content = tmp;
-	ft_printf("s%c\n", c);
+	last = ft_lstlast(*lst);
+	second_last = *lst;
+	while (second_last->next != last)
+		second_last = second_last->next;
+	second_last->next = NULL;
+	last->next = *lst;
+	*lst = last;
+	ft_printf("rr%c\n", c);
 }

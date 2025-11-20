@@ -1,25 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   instructions.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/21 00:00:00 by glucken           #+#    #+#             */
+/*   Updated: 2025/11/21 00:00:00 by glucken          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	instruction(t_list **stack_a, t_list **stack_b, size_t len)
 {
-	// on va en push tous sauf 2 dans la stack_b
+	size_t	len_a;
+	size_t	len_b;
+	int		nb;
 
-	int len_a;
-	int len_b;
-	while (len_a-- > 2)
+	if (lst_is_sorted(*stack_a, 'a'))
+		return ;
+	if (len <= 5)
 	{
-		push(stack_a, stack_b, 'b');
-		len_b++;
+		sort_small_lists(stack_a, stack_b, len);
+		return ;
 	}
-	// si les 2 restant dans la stack a ils sont dans l'ordre alors on fait rien, sinon on les swap
-	if (stack_a->content > stack_a->next->content)
+	len_a = len;
+	len_b = 0;
+	push_to_b(stack_a, stack_b, &len_a, &len_b);
+	if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
 		swap(stack_a, 'a');
-	// on va boucler sur la len de b
-		// pour chaucn des elements dans a on cherche celui qui a le moindre cout pour mettre lui et son buddy au top
-		// on le fait
-		// on push le top b dans a
 	while (len_b--)
 	{
-
+		nb = less_cost_in_stack_a(*stack_a, *stack_b);
+		put_to_top(nb, stack_a, stack_b);
+		push(stack_b, stack_a, 'a');
 	}
+	finalize_sorting(stack_a);
 }

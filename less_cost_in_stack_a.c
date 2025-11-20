@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   less_cost_in_stack_a.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,27 @@
 
 #include "push_swap.h"
 
-void	swap(t_list **lst, char c)
+int	less_cost_in_stack_a(t_list *stack_a, t_list *stack_b)
 {
-	void	*tmp;
+	int		min_cost;
+	int		best_nb;
+	t_list	*current;
+	int		nb;
+	int		cost;
 
-	if (!lst || !*lst || !(*lst)->next)
-		return ;
-	tmp = (*lst)->content;
-	(*lst)->content = (*lst)->next->content;
-	(*lst)->next->content = tmp;
-	ft_printf("s%c\n", c);
+	min_cost = INT_MAX;
+	best_nb = -1;
+	current = stack_b;
+	while (current)
+	{
+		nb = *(int *)current->content;
+		cost = min_moves(nb, stack_a, stack_b);
+		if (cost < min_cost)
+		{
+			min_cost = cost;
+			best_nb = nb;
+		}
+		current = current->next;
+	}
+	return (best_nb);
 }
