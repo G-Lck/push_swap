@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <limits.h>
 # include "libftprintf/libftprintf.h"
 
 typedef struct s_list
@@ -25,6 +26,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int get_buddy(int me, t_list *lst);
 void	instruction(t_list **stack_a, t_list **stack_b, size_t len);
 int	lst_is_sorted(t_list *lst, char c);
 int *convert_numbers_to_position(int* numbers, int* position, size_t len);

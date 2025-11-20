@@ -15,6 +15,7 @@ SRCS = check_unicity.c \
 	convert_arr_to_list.c \
 	utils_libft.c \
 	utils_list.c \
+	get_buddy.c \
 	libftprintf/libftprintf.a
 
 OBJS = ${SRCS:.c=.o}
