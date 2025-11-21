@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_buddy.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,32 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	get_buddy(int me, t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int		min_distance;
-	int		buddy;
-	int		current_val;
-	int		found_bigger;
-	t_list	*original_lst;
+	t_list	*temp;
 
-	min_distance = INT_MAX;
-	buddy = me;
-	found_bigger = 0;
-	original_lst = lst;
-	while (lst)
-	{
-		current_val = *(int *)lst->content;
-		if (current_val > me && current_val - me < min_distance)
-		{
-			min_distance = current_val - me;
-			buddy = current_val;
-			found_bigger = 1;
-		}
-		lst = lst->next;
-	}
-	if (!found_bigger)
-		buddy = find_smallest(original_lst);
-	return (buddy);
+	if (!lst)
+		return (NULL);
+	temp = lst;
+	while (temp->next != NULL)
+		temp = temp->next;
+	return (temp);
 }

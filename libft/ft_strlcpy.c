@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_buddy.c                                        :+:      :+:    :+:   */
+/*   utils_libft.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,33 +9,20 @@
 /*   Updated: 2025/11/21 00:00:00 by glucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "push_swap.h"
-
-int	get_buddy(int me, t_list *lst)
+size_t	ft_strlcpy(char *dest, const char *src, size_t dsize)
 {
-	int		min_distance;
-	int		buddy;
-	int		current_val;
-	int		found_bigger;
-	t_list	*original_lst;
+	size_t	i;
 
-	min_distance = INT_MAX;
-	buddy = me;
-	found_bigger = 0;
-	original_lst = lst;
-	while (lst)
+	i = 0;
+	if (dsize == 0)
+		return (ft_strlen(src));
+	while (i + 1 < dsize && src[i])
 	{
-		current_val = *(int *)lst->content;
-		if (current_val > me && current_val - me < min_distance)
-		{
-			min_distance = current_val - me;
-			buddy = current_val;
-			found_bigger = 1;
-		}
-		lst = lst->next;
+		dest[i] = src[i];
+		i++;
 	}
-	if (!found_bigger)
-		buddy = find_smallest(original_lst);
-	return (buddy);
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }

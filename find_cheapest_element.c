@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min_moves.c                                       :+:      :+:    :+:   */
+/*   find_cheapest_element.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -33,7 +33,7 @@ static int	get_max(int a, int b)
 	return (b);
 }
 
-int	min_moves(int nb, t_list *stack_a, t_list *stack_b)
+static int	min_moves(int nb, t_list *stack_a, t_list *stack_b)
 {
 	int	buddy;
 	int	pos_a;
@@ -50,4 +50,29 @@ int	min_moves(int nb, t_list *stack_a, t_list *stack_b)
 			get_max(size_a - pos_a, size_b - pos_b),
 			pos_a + (size_b - pos_b),
 			(size_a - pos_a) + pos_b));
+}
+
+int	find_cheapest_element(t_list *stack_a, t_list *stack_b)
+{
+	int		min_cost;
+	int		best_nb;
+	t_list	*current;
+	int		nb;
+	int		cost;
+
+	min_cost = INT_MAX;
+	best_nb = -1;
+	current = stack_b;
+	while (current)
+	{
+		nb = *(int *)current->content;
+		cost = min_moves(nb, stack_a, stack_b);
+		if (cost < min_cost)
+		{
+			min_cost = cost;
+			best_nb = nb;
+		}
+		current = current->next;
+	}
+	return (best_nb);
 }

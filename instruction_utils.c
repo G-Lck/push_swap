@@ -12,22 +12,19 @@
 
 #include "push_swap.h"
 
-static int	find_min_value_internal(t_list *stack)
+int	get_position(t_list *stack, int nb)
 {
-	int		min;
-	t_list	*current;
+	int	pos;
 
-	if (!stack)
-		return (0);
-	min = *(int *)stack->content;
-	current = stack->next;
-	while (current)
+	pos = 0;
+	while (stack)
 	{
-		if (*(int *)current->content < min)
-			min = *(int *)current->content;
-		current = current->next;
+		if (*(int *)stack->content == nb)
+			return (pos);
+		stack = stack->next;
+		pos++;
 	}
-	return (min);
+	return (-1);
 }
 
 int	calculate_average(t_list *stack)
@@ -50,28 +47,12 @@ int	calculate_average(t_list *stack)
 	return (0);
 }
 
-void	sort_small_lists(t_list **stack_a, t_list **stack_b, size_t len)
+void	push_to_b(t_list **stack_a, t_list **stack_b,
+			size_t *len_a, size_t *len_b)
 {
-	if (len == 2)
-	{
-		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
-			swap(stack_a, 'a');
-	}
-	else if (len == 3)
-		sort3(stack_a);
-	else if (len == 4)
-		sort4(stack_a, stack_b);
-	else if (len == 5)
-		sort5(stack_a, stack_b);
-}
-
-void	push_to_b(t_list **stack_a, t_list **stack_b, size_t *len_a, size_t *len_b)
-{
-	int	rotations;
 	int	average;
 	int	top_element;
 
-	rotations = 0;
 	while (*len_a > 2)
 	{
 		average = calculate_average(*stack_a);
@@ -81,19 +62,10 @@ void	push_to_b(t_list **stack_a, t_list **stack_b, size_t *len_a, size_t *len_b)
 			push(stack_a, stack_b, 'b');
 			(*len_b)++;
 			(*len_a)--;
-			rotations = 0;
 		}
 		else
 		{
 			rotate(stack_a, 'a');
-			rotations++;
-			if (rotations >= (int)*len_a)
-			{
-				push(stack_a, stack_b, 'b');
-				(*len_b)++;
-				(*len_a)--;
-				rotations = 0;
-			}
 		}
 	}
 }
@@ -104,7 +76,7 @@ void	finalize_sorting(t_list **stack_a)
 	int	min_pos;
 	int	size_a;
 
-	min_val = find_min_value_internal(*stack_a);
+	min_val = find_smallest(*stack_a);
 	min_pos = get_position(*stack_a, min_val);
 	size_a = ft_lstsize(*stack_a);
 	if (min_pos <= size_a / 2)

@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-static int	ft_strlen_s(const char *str, char c)
+static int	get_word_len(const char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != c && str[i] != '\0')
+	while (str[i] != ' ' && str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -28,7 +28,7 @@ int	count_words(const char *s, char c)
 	int	count;
 
 	count = 0;
-	if (ft_strlen_s(s, '\0') == 0)
+	if (ft_strlen(s) == 0)
 		return (0);
 	if (s[0] != c)
 		count++;
@@ -42,7 +42,7 @@ int	count_words(const char *s, char c)
 	return (count);
 }
 
-static int	validate_and_convert(char *word, int len)
+static int	validate_and_convert(char *word)
 {
 	char	*itoa_result;
 	int		result;
@@ -50,7 +50,8 @@ static int	validate_and_convert(char *word, int len)
 	itoa_result = ft_itoa(ft_atoi(word));
 	if (!itoa_result)
 		return (0);
-	if (ft_strncmp(word, itoa_result, len) != 0)
+	if (ft_strlen(word) != ft_strlen(itoa_result)
+		|| ft_strncmp(word, itoa_result, ft_strlen(word)) != 0)
 	{
 		free(itoa_result);
 		return (0);
@@ -66,12 +67,12 @@ static int	process_word(char *str, int *arr, int i, int j)
 	int		len;
 	int		result;
 
-	len = ft_strlen_s(str + i, ' ');
+	len = get_word_len(str + i);
 	word = malloc(len + 1);
 	if (!word)
 		return (-1);
 	ft_strlcpy(word, str + i, len + 1);
-	result = validate_and_convert(word, len);
+	result = validate_and_convert(word);
 	if (result == 0 && ft_atoi(word) != 0)
 	{
 		free(word);

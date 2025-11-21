@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_arr_to_list.c                              :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	convert_arr_to_list(int *arr, t_list **stack_a, size_t len)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
-	t_list	*new_node;
+	t_list	*node;
 
-	i = 0;
-	while (i < len)
-	{
-		new_node = ft_lstnew(&arr[i]);
-		if (!new_node)
-			return ;
-		ft_lstadd_back(stack_a, new_node);
-		i++;
-	}
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }

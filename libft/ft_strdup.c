@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_unicity.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	check_unicity(int *arr, size_t len)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	size_t	j;
+	char	*s_cpy;
+	int		i;
 
+	s_cpy = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!s_cpy)
+		return (NULL);
 	i = 0;
-	j = 0;
-	while (i < len - 1)
+	while (s[i])
 	{
-		j = i + 1;
-		while (j < len)
-		{
-			if (arr[i] == arr[j])
-				return (0);
-			j++;
-		}
+		s_cpy[i] = s[i];
 		i++;
 	}
-	return (1);
+	s_cpy[i] = '\0';
+	return (s_cpy);
 }

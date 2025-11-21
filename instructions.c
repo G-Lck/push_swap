@@ -32,7 +32,7 @@ void	instruction(t_list **stack_a, t_list **stack_b, size_t len)
 		swap(stack_a, 'a');
 	while (len_b--)
 	{
-		nb = less_cost_in_stack_a(*stack_a, *stack_b);
+		nb = find_cheapest_element(*stack_a, *stack_b);
 		put_to_top(nb, stack_a, stack_b);
 		push(stack_b, stack_a, 'a');
 	}

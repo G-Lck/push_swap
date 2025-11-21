@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push_swap(char *str)
+int	push_swap(char *str)
 {
 	int		*arr;
 	t_list	*stack_a;
@@ -21,34 +21,36 @@ void	push_swap(char *str)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (!str || ft_strlen(str) == 0)
-	{
-		ft_printf("Error\n");
-		return ;
-	}
-	word_count = count_words(str, ' ');
-	arr = copynumbers(str, ' ', word_count);
-	if (!arr)
-	{
-		ft_printf("Error\n");
-		return ;
-	}
-	if (!check_unicity(arr, word_count))
-	{
-		ft_printf("Error\n");
-		return ;
-	}
+	if (!validate_and_parse(str, &arr, &word_count))
+		return (ft_printf("Error\n"), 1);
 	convert_arr_to_list(arr, &stack_a, word_count);
+	free(arr);
 	instruction(&stack_a, &stack_b, word_count);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+	return (0);
+}
+
+int	handle_multiple_args(int argc, char **argv)
+{
+	char	*str;
+	int		result;
+
+	str = build_string_from_args(argc, argv);
+	if (!str)
+		return (ft_printf("Error\n"), 1);
+	result = push_swap(str);
+	free(str);
+	return (result);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		ft_printf("Error\n");
-		return (1);
-	}
-	push_swap(argv[1]);
+	if (argc < 2)
+		return (ft_printf("Error\n"), 1);
+	if (argc == 2)
+		return (push_swap(argv[1]));
+	else
+		return (handle_multiple_args(argc, argv));
 	return (0);
 }

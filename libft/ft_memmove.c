@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_buddy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,32 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	get_buddy(int me, t_list *lst)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	int		min_distance;
-	int		buddy;
-	int		current_val;
-	int		found_bigger;
-	t_list	*original_lst;
+	unsigned char	*temp_src;
+	unsigned char	*temp_dest;
 
-	min_distance = INT_MAX;
-	buddy = me;
-	found_bigger = 0;
-	original_lst = lst;
-	while (lst)
+	if (!dest && !src)
+		return (NULL);
+	temp_src = (unsigned char *)src;
+	temp_dest = (unsigned char *)dest;
+	if (dest > src)
 	{
-		current_val = *(int *)lst->content;
-		if (current_val > me && current_val - me < min_distance)
-		{
-			min_distance = current_val - me;
-			buddy = current_val;
-			found_bigger = 1;
-		}
-		lst = lst->next;
+		while (len--)
+			temp_dest[len] = temp_src[len];
 	}
-	if (!found_bigger)
-		buddy = find_smallest(original_lst);
-	return (buddy);
+	else
+		ft_memcpy(dest, src, len);
+	return (dest);
 }

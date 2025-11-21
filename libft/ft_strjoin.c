@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_buddy.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,32 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	get_buddy(int me, t_list *lst)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		min_distance;
-	int		buddy;
-	int		current_val;
-	int		found_bigger;
-	t_list	*original_lst;
+	char	*sjoin;
+	int		i;
+	int		j;
 
-	min_distance = INT_MAX;
-	buddy = me;
-	found_bigger = 0;
-	original_lst = lst;
-	while (lst)
+	if (!s1 || !s2)
+		return (NULL);
+	sjoin = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!sjoin)
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		current_val = *(int *)lst->content;
-		if (current_val > me && current_val - me < min_distance)
-		{
-			min_distance = current_val - me;
-			buddy = current_val;
-			found_bigger = 1;
-		}
-		lst = lst->next;
+		sjoin[i] = s1[i];
+		i++;
 	}
-	if (!found_bigger)
-		buddy = find_smallest(original_lst);
-	return (buddy);
+	j = 0;
+	while (s2[j])
+		sjoin[i++] = s2[j++];
+	sjoin[i] = '\0';
+	return (sjoin);
 }

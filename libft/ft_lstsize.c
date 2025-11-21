@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   less_cost_in_stack_a.c                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	less_cost_in_stack_a(t_list *stack_a, t_list *stack_b)
+int	ft_lstsize(t_list *lst)
 {
-	int		min_cost;
-	int		best_nb;
-	t_list	*current;
-	int		nb;
-	int		cost;
+	int	n;
 
-	min_cost = INT_MAX;
-	best_nb = -1;
-	current = stack_b;
-	while (current)
+	n = 0;
+	while (lst != NULL)
 	{
-		nb = *(int *)current->content;
-		cost = min_moves(nb, stack_a, stack_b);
-		if (cost < min_cost)
-		{
-			min_cost = cost;
-			best_nb = nb;
-		}
-		current = current->next;
+		lst = lst->next;
+		n++;
 	}
-	return (best_nb);
+	return (n);
 }

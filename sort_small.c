@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+void	sort_small_lists(t_list **stack_a, t_list **stack_b, size_t len)
+{
+	if (len == 2)
+	{
+		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
+			swap(stack_a, 'a');
+	}
+	else if (len == 3)
+		sort3(stack_a);
+	else if (len == 4)
+		sort4(stack_a, stack_b);
+	else if (len == 5)
+		sort5(stack_a, stack_b);
+}
+
 void	sort3(t_list **stack_a)
 {
 	int	first;

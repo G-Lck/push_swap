@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                            :+:      :+:    :+:   */
+/*   utils_libft.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,20 +9,14 @@
 /*   Updated: 2025/11/21 00:00:00 by glucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "push_swap.h"
-
-void	push(t_list **lst1, t_list **lst2, char c)
+size_t	ft_strlen(const char *s)
 {
-	t_list	*first;
+	int	i;
 
-	if (!lst1 || !*lst1)
-		return ;
-	if (!lst2)
-		return ;
-	first = *lst1;
-	*lst1 = first->next;
-	ft_lstadd_front(lst2, first);
-	ft_printf("p%c\n", c);
+	i = 0;
+	while (s[i] != 0)
+		i++;
+	return (i);
 }
-

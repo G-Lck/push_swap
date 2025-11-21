@@ -1,8 +1,19 @@
 NAME = libft.a
 SRCS = ft_atoi.c \
 	ft_itoa.c \
-	utils_libft.c \
-	utils_list.c
+	ft_strlen.c \
+	ft_strlcpy.c \
+	ft_strdup.c \
+	ft_strjoin.c \
+	ft_strncmp.c \
+	ft_memcpy.c \
+	ft_memmove.c \
+	ft_lstnew.c \
+	ft_lstlast.c \
+	ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstsize.c \
+	print_list_int.c
 
 OBJS = ${SRCS:.c=.o}
 INCLUDE = libft.h

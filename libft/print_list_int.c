@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_position.c                                     :+:      :+:    :+:   */
+/*   print_list_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	get_position(t_list *stack, int nb)
+void	print_list_int(t_list *lst)
 {
-	int	pos;
+	t_list	*cur;
+	int		i;
 
-	pos = 0;
-	while (stack)
+	cur = lst;
+	i = 0;
+	if (!lst)
 	{
-		if (*(int *)stack->content == nb)
-			return (pos);
-		stack = stack->next;
-		pos++;
+		ft_printf("(empty)\n");
+		return ;
 	}
-	return (-1);
+	while (cur)
+	{
+		if (cur->content)
+			ft_printf("[%d] %d\n", i, *(int *)cur->content);
+		else
+			ft_printf("[%d] (null)\n", i);
+		cur = cur->next;
+		i++;
+	}
 }

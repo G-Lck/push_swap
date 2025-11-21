@@ -1,22 +1,17 @@
 NAME = push_swap.out
-SRCS = check_unicity.c \
-	lst_is_sorted.c \
+SRCS = execute_strategy.c \
+	get_buddy.c \
+	instruction_utils.c \
 	instructions.c \
+	find_cheapest_element.c \
+	operations.c \
 	parsing.c \
 	push_swap.c \
-	push.c \
-	swap.c \
-	rotate.c \
-	sort_small.c \
-	sort_helpers.c \
-	instruction_utils.c \
-	convert_arr_to_list.c \
-	get_buddy.c \
-	get_position.c \
-	min_moves.c \
 	put_to_top.c \
-	reverse_rotate.c \
-	less_cost_in_stack_a.c \
+	sort_helpers.c \
+	sort_small.c \
+	string_utils.c \
+	utils_list.c \
 	libft/libft.a \
 	libftprintf/libftprintf.a
 

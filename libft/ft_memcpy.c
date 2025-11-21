@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_is_sorted.c                                   :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glucken <glucken@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	lst_is_sorted(t_list *lst, char c)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	a;
-	int	b;
+	unsigned char	*temp_dest;
+	unsigned char	*temp_src;
+	size_t			i;
 
-	if (!lst)
-		return (1);
-	while (lst && lst->next)
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	temp_dest = (unsigned char *)dest;
+	temp_src = (unsigned char *)src;
+	while (i < n)
 	{
-		if (!lst->content || !lst->next->content)
-			return (0);
-		a = *(int *)(lst->content);
-		b = *(int *)(lst->next->content);
-		if (c == 'a' && a > b)
-			return (0);
-		if (c == 'd' && a < b)
-			return (0);
-		if (c == 'i' && a != b - 1)
-			return (0);
-		lst = lst->next;
+		temp_dest[i] = temp_src[i];
+		i++;
 	}
-	return (1);
+	return (dest);
 }
