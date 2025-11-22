@@ -2,7 +2,7 @@ NAME = push_swap
 CHECKER_NAME = checker
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = execute_strategy.c \
 	get_buddy.c \
@@ -18,7 +18,11 @@ SRCS = execute_strategy.c \
 	string_utils.c \
 	utils_list.c
 
-CHECKER_SRCS = checker_src/checker.c checker_src/checker_operations.c checker_src/operations_no_print.c parsing.c string_utils.c utils_list.c checker_src/get_next_line_checker.c
+CHECKER_SRCS = checker_src/checker.c \
+	checker_src/checker_operations.c \
+	checker_src/operations_no_print.c \
+	parsing.c string_utils.c utils_list.c \
+	checker_src/get_next_line_checker.c
 
 OBJS = ${SRCS:.c=.o}
 CHECKER_OBJS = ${CHECKER_SRCS:.c=.o}

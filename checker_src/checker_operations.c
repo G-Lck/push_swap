@@ -14,13 +14,14 @@
 
 static int	handle_reverse_rotate(char *line, t_list **sa, t_list **sb)
 {
-	if (ft_strncmp(line, "rra\n", 4) == 0 ||
-		ft_strncmp(line, "rra", 3) == 0)
+	if (ft_strncmp(line, "rra\n", 4) == 0
+		|| ft_strncmp(line, "rra", 3) == 0)
 		reverse_rotate_no_print(sa);
-	else if (ft_strncmp(line, "rrb\n", 4) == 0 ||
-			ft_strncmp(line, "rrb", 3) == 0)
+	else if (ft_strncmp(line, "rrb\n", 4) == 0
+		|| ft_strncmp(line, "rrb", 3) == 0)
 		reverse_rotate_no_print(sb);
-	else if (ft_strncmp(line, "rrr\n", 4) == 0 || ft_strncmp(line, "rrr", 3) == 0)
+	else if (ft_strncmp(line, "rrr\n", 4) == 0
+		|| ft_strncmp(line, "rrr", 3) == 0)
 	{
 		reverse_rotate_no_print(sa);
 		reverse_rotate_no_print(sb);
@@ -61,7 +62,6 @@ static int	handle_other_ops(char *line, t_list **stack_a, t_list **stack_b)
 
 int	execute_operation(char *line, t_list **stack_a, t_list **stack_b)
 {
-
 	if (handle_reverse_rotate(line, stack_a, stack_b))
 		return (1);
 	return (handle_other_ops(line, stack_a, stack_b));

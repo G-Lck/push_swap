@@ -26,8 +26,8 @@ int	push_swap(char *str)
 	convert_arr_to_list(arr, &stack_a, word_count);
 	free(arr);
 	instruction(&stack_a, &stack_b, word_count);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
+	free_list(&stack_a);
+	free_list(&stack_b);
 	return (0);
 }
 
@@ -54,3 +54,4 @@ int	main(int argc, char **argv)
 		return (handle_multiple_args(argc, argv));
 	return (0);
 }
+                            

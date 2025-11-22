@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <stdio.h>
 
 static int	is_sorted(t_list *stack_a, t_list *stack_b)
 {
@@ -33,7 +32,7 @@ static int	is_sorted(t_list *stack_a, t_list *stack_b)
 	return (1);
 }
 
-static int	init_stacks(int argc, char **argv, t_list **stack_a, t_list **stack_b)
+int	init_stacks(int argc, char **argv, t_list **stack_a, t_list **stack_b)
 {
 	char	*str;
 	int		*arr;
@@ -66,12 +65,14 @@ static int	process_instructions(t_list **stack_a, t_list **stack_b)
 	{
 		if (!execute_operation(line, stack_a, stack_b))
 		{
-			printf("Error\n");
+			ft_printf("Error\n");
 			free(line);
 			return (0);
 		}
 		free(line);
 		line = get_next_line(0);
+		if (line != NULL)
+			ft_printf("%s", line);
 	}
 	return (1);
 }
@@ -82,7 +83,10 @@ int	main(int argc, char **argv)
 	t_list	*stack_b;
 
 	if (!init_stacks(argc, argv, &stack_a, &stack_b))
+	{
+		ft_printf("Error\n");
 		return (1);
+	}
 	if (!process_instructions(&stack_a, &stack_b))
 	{
 		free_list(&stack_a);
@@ -90,9 +94,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (is_sorted(stack_a, stack_b))
-		printf("OK\n");
+		ft_printf("OK\n");
 	else
-		printf("KO\n");
+		ft_printf("KO\n");
 	free_list(&stack_a);
 	free_list(&stack_b);
 	return (0);

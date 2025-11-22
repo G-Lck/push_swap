@@ -35,19 +35,6 @@ void	print_list_int(t_list *lst)
 	}
 }
 
-void	free_stack(t_list **stack)
-{
-	t_list	*temp;
-
-	while (*stack)
-	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp->content);
-		free(temp);
-	}
-}
-
 int	lst_is_sorted(t_list *lst, char c)
 {
 	int	a;

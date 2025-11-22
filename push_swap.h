@@ -13,10 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <stddef.h>
 # include <limits.h>
 # include "libftprintf/libftprintf.h"
 # include "libft/libft.h"
@@ -29,7 +25,6 @@
 
 /* Core program */
 int		push_swap(char *str);
-int		push_swap_func(char *str);
 
 /*
 ** ============================================================================
@@ -61,15 +56,19 @@ void	swap(t_list **lst, char c);
 void	rotate(t_list **lst, char c);
 void	reverse_rotate(t_list **lst, char c);
 
-// Operations sans print pour le checker
+/* Basic operations without print */
 void	push_no_print(t_list **lst1, t_list **lst2);
 void	swap_no_print(t_list **lst);
 void	rotate_no_print(t_list **lst);
 void	reverse_rotate_no_print(t_list **lst);
 int		execute_operation(char *line, t_list **stack_a, t_list **stack_b);
+
+/* List helpers */
+int		init_stacks(int argc, char **argv, t_list **stack_a, t_list **stack_b);
 char	*get_next_line(int fd);
 void	convert_arr_to_list(int *arr, t_list **stack_a, size_t len);
 void	free_list(t_list **lst);
+int		find_smallest(t_list *lst);
 
 /*
 ** ============================================================================
@@ -121,14 +120,5 @@ void	execute_ra_rrb_strategy(t_list **stack_a, t_list **stack_b,
 			int pos_a, int pos_b);
 void	execute_rra_rb_strategy(t_list **stack_a, t_list **stack_b,
 			int pos_a, int pos_b);
-
-/*
-** ============================================================================
-**                            MEMORY MANAGEMENT
-** ============================================================================
-*/
-
-void	free_stack(t_list **stack);
-int		find_smallest(t_list *lst);
 
 #endif

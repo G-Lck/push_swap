@@ -26,19 +26,19 @@ static char	find_best_strategy(int cost_rr, int cost_rrr,
 	char	strategy;
 
 	min = cost_rr;
-	strategy = 'r';
+	strategy = '1';
 	if (cost_rrr < min)
 	{
 		min = cost_rrr;
-		strategy = 'R';
+		strategy = '2';
 	}
 	if (cost_ra_rrb < min)
 	{
 		min = cost_ra_rrb;
-		strategy = 'x';
+		strategy = '3';
 	}
 	if (cost_rra_rb < min)
-		strategy = 'X';
+		strategy = '4';
 	return (strategy);
 }
 
@@ -72,13 +72,13 @@ void	put_to_top(int nb, t_list **stack_a, t_list **stack_b)
 	pos_a = get_position(*stack_a, buddy);
 	pos_b = get_position(*stack_b, nb);
 	strategy = get_move_strategy(nb, *stack_a, *stack_b);
-	if (strategy == 'r')
+	if (strategy == '1')
 		execute_rr_strategy(stack_a, stack_b, pos_a, pos_b);
-	else if (strategy == 'R')
+	else if (strategy == '2')
 		execute_rrr_strategy(stack_a, stack_b,
 			ft_lstsize(*stack_a) - pos_a, ft_lstsize(*stack_b) - pos_b);
-	else if (strategy == 'x')
+	else if (strategy == '3')
 		execute_ra_rrb_strategy(stack_a, stack_b, pos_a, pos_b);
-	else if (strategy == 'X')
+	else if (strategy == '4')
 		execute_rra_rb_strategy(stack_a, stack_b, pos_a, pos_b);
 }
