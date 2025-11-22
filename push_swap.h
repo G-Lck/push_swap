@@ -29,6 +29,7 @@
 
 /* Core program */
 int		push_swap(char *str);
+int		push_swap_func(char *str);
 
 /*
 ** ============================================================================
@@ -59,6 +60,16 @@ void	push(t_list **lst1, t_list **lst2, char c);
 void	swap(t_list **lst, char c);
 void	rotate(t_list **lst, char c);
 void	reverse_rotate(t_list **lst, char c);
+
+// Operations sans print pour le checker
+void	push_no_print(t_list **lst1, t_list **lst2);
+void	swap_no_print(t_list **lst);
+void	rotate_no_print(t_list **lst);
+void	reverse_rotate_no_print(t_list **lst);
+int		execute_operation(char *line, t_list **stack_a, t_list **stack_b);
+char	*get_next_line(int fd);
+void	convert_arr_to_list(int *arr, t_list **stack_a, size_t len);
+void	free_list(t_list **lst);
 
 /*
 ** ============================================================================

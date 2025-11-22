@@ -28,8 +28,8 @@ test_case() {
     echo "Testing: $name"
     echo "Input: $numbers"
 
-    local instructions=$(./push_swap.out "$numbers" 2>/dev/null | wc -l)
-    local result=$(./push_swap.out "$numbers" 2>/dev/null | ./checker_linux "$numbers" 2>/dev/null)
+    local instructions=$($PUSH_SWAP "$numbers" 2>/dev/null | wc -l)
+    local result=$($PUSH_SWAP "$numbers" 2>/dev/null | $CHECKER "$numbers" 2>/dev/null)
 
     echo "Instructions: $instructions"
     echo "Checker result: $result"
@@ -58,8 +58,8 @@ benchmark_size() {
 
     for i in $(seq 1 $num_tests); do
         local numbers=$(generate_random $size)
-        local instructions=$(./push_swap.out "$numbers" 2>/dev/null | wc -l)
-        local result=$(./push_swap.out "$numbers" 2>/dev/null | ./checker_linux "$numbers" 2>/dev/null)
+        local instructions=$($PUSH_SWAP "$numbers" 2>/dev/null | wc -l)
+        local result=$($PUSH_SWAP "$numbers" 2>/dev/null | $CHECKER "$numbers" 2>/dev/null)
 
         total=$((total + instructions))
 
@@ -82,19 +82,36 @@ benchmark_size() {
     echo
 }
 
-echo "Compiling push_swap..."
+echo "Compiling push_swap and checker..."
 make re > /dev/null 2>&1
+make checker > /dev/null 2>&1
 
-if [ ! -f "./push_swap.out" ]; then
-    echo "❌ Compilation failed!"
+# Détection automatique de l'exécutable
+PUSH_SWAP=""
+if [ -f "./push_swap" ]; then
+    PUSH_SWAP="./push_swap"
+elif [ -f "./push_swap.out" ]; then
+    PUSH_SWAP="./push_swap.out"
+else
+    echo "❌ No push_swap executable found!"
     exit 1
 fi
 
-if [ ! -f "./checker_linux" ]; then
-    echo "❌ checker_linux not found!"
+echo "Using executable: $PUSH_SWAP"
+
+# Détection automatique du checker (priorité à notre checker)
+CHECKER=""
+if [ -f "./checker" ]; then
+    CHECKER="./checker"
+elif [ -f "./checker_linux" ]; then
+    CHECKER="./checker_linux"
+else
+    echo "❌ No checker found! Please compile the checker first."
+    echo "Run: make checker"
     exit 1
 fi
 
+echo "Using checker: $CHECKER"
 echo "✅ Compilation successful"
 echo
 
@@ -124,8 +141,8 @@ benchmark_size 5 12
 # 100 éléments (max ~700 instructions pour un bon algorithme)
 echo "=== BENCHMARK: 100 elements (target: <700) ==="
 numbers_100=$(generate_random 100)
-instructions_100=$(./push_swap.out "$numbers_100" | wc -l)
-result_100=$(./push_swap.out "$numbers_100" | ./checker_linux "$numbers_100")
+instructions_100=$($PUSH_SWAP "$numbers_100" | wc -l)
+result_100=$($PUSH_SWAP "$numbers_100" | $CHECKER "$numbers_100")
 echo "Instructions: $instructions_100"
 echo "Checker result: $result_100"
 if [ "$result_100" = "OK" ]; then
@@ -146,8 +163,8 @@ echo
 # 500 éléments (max ~5500 instructions pour un bon algorithme)
 echo "=== BENCHMARK: 500 elements (target: <5500) ==="
 numbers_500=$(generate_random 500)
-instructions_500=$(./push_swap.out "$numbers_500" | wc -l)
-result_500=$(./push_swap.out "$numbers_500" | ./checker_linux "$numbers_500")
+instructions_500=$($PUSH_SWAP "$numbers_500" | wc -l)
+result_500=$($PUSH_SWAP "$numbers_500" | $CHECKER "$numbers_500")
 echo "Instructions: $instructions_500"
 echo "Checker result: $result_500"
 if [ "$result_500" = "OK" ]; then

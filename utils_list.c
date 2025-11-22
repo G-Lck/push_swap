@@ -72,6 +72,21 @@ int	lst_is_sorted(t_list *lst, char c)
 	return (1);
 }
 
+void	free_list(t_list **lst)
+{
+	t_list	*tmp;
+
+	if (!lst || !*lst)
+		return ;
+	while (*lst)
+	{
+		tmp = *lst;
+		*lst = (*lst)->next;
+		free(tmp->content);
+		free(tmp);
+	}
+}
+
 void	convert_arr_to_list(int *arr, t_list **stack_a, size_t len)
 {
 	size_t	i;
